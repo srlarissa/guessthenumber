@@ -13,10 +13,16 @@ const StartGameScreen = () => {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        flex: 1,
-        padding: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 16,
+        marginTop:100,
+        marginHorizontal:24,
+        backgroundColor: '#151F30',
+        borderRadius: 8,
+        elevation: 4,
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 6,
+        shadowOpacity: 0.25,
     },
 });
 
