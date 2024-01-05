@@ -6,7 +6,7 @@ const PrimaryButton = ({ children }) => {
     }
     return (
         <Pressable onPress={pressed}>
-            <View style={styles.container}>
+            <View style={styles.buttonContainer}>
                 <Text>{children}</Text>
             </View>
         </Pressable>
@@ -14,7 +14,7 @@ const PrimaryButton = ({ children }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    buttonContainer: {
         backgroundColor: '#103778',
         borderRadius: 28,
         paddingVertical: 8,
