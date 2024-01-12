@@ -12,14 +12,14 @@ import { Plus, Minus } from 'phosphor-react-native';
 const GameScreen = ({ userNumber, onGameOver }) => {
     let min = 1;
     let max = 100;
-    let initialGuess = generateRandomNumber(max, min, userNumber);
+    let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
     useEffect(() => {
         if(guessedNumber === userNumber){
             onGameOver();
         }
-    }, [guessedNumber]);
+    }, [guessedNumber, userNumber, onGameOver]);
 
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
