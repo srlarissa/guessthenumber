@@ -1,38 +1,63 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import Colors from '../constants/Colors';
+import {    View, 
+            Text, 
+            StyleSheet, 
+            Pressable, 
+            Alert} from 'react-native';
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
-import GameBtn from '../components/game/GameBtn';
-import Colors from '../constants/Colors';
+import { Plus, Minus } from 'phosphor-react-native';
 
-function generateRandomNumber(max, min, exclude){
-    const rndNumber = Math.floor(Math.random() * (max - min)) + min;
-
-    if(rndNumber === exclude){
-        return generateRandomNumber(max, min, exclude);
-    }else{
-        return rndNumber;
-    }
-}
 const GameScreen = ({ userNumber }) => {
-    const min = 1;
-    const max = 100;
+    let min = 1;
+    let max = 100;
     let initialGuess = generateRandomNumber(max, min, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
+
+    function generateRandomNumber(max, min, exclude){
+        const rndNumber = Math.floor(Math.random() * (max - min)) + min;
+    
+        if(rndNumber === exclude){
+            return generateRandomNumber(max, min, exclude);
+        }else{
+            return rndNumber;
+        }
+    }
+    
+    function nextGuessGenerator(direction){
+        if(direction == 'lower' && guessedNumber < userNumber){
+            max = guessedNumber;
+            
+        }else if(direction == 'higher' && guessedNumber > userNumber){
+            min = guessedNumber + 1;
+        }else{
+            return Alert.alert("Don't lie!", "You know that this is wrong...", [{text: 'Sorry', style: 'cancel'}]);
+        }
+        const newRndNumber = generateRandomNumber(max, min, guessedNumber);
+        setGuessedNumber(newRndNumber);
+    }
     return (
         <View style={styles.screen}>
             <PrimaryTitle>Opponent's Guess</PrimaryTitle>
             <NumberContainer>{guessedNumber}</NumberContainer>
             <View style={styles.btnContainer}>
-                <GameBtn>+</GameBtn>
+                <Pressable onPress={() => nextGuessGenerator('higher')}>
+                    <View style={styles.btn}>
+                        <Plus weight='bold' color={Colors.btnTxt} />
+                    </View>
+                </Pressable>
                 <View style={styles.btnTitleContainer}>
                     <Text style={styles.higher}>Higher </Text>
                     <Text style={styles.or}>OR </Text>
                     <Text style={styles.lower}>Lower </Text>
                     <Text style={styles.or}>?</Text>
-
                 </View>
-                <GameBtn>-</GameBtn>
+                <Pressable onPress={() => nextGuessGenerator('lower')}>
+                    <View style={styles.btn}>
+                        <Minus weight='bold' color={Colors.btnTxt} />
+                    </View>
+                </Pressable>
             </View>
         </View>
     );
@@ -53,21 +78,32 @@ const styles = StyleSheet.create({
     },
     btnTitleContainer:{
         flexDirection: 'row',
-
+    },
+    btn:{
+        backgroundColor:Colors.btnPlusMinusBg,
+        borderWidth:2,
+        borderColor: Colors.btnTxt,
+        borderRadius:100,
+        alignItems:'center',
+        justifyContent:'center',
+        padding:24,
     },
     higher:{
         color:Colors.higher,
-        fontWeight: 'bold',
+        fontWeight: '800',
         fontSize: 24,
+        textDecorationLine:'underline',
     },
     lower:{
         color:Colors.lower,
-        fontWeight: 'bold',
+        fontWeight: '800',
         fontSize: 24,
+        textDecorationLine:'underline',
     },
     or:{
        color: Colors.btnTxt,
         fontSize: 24,
+        fontWeight: '500',
     }
 
 })
