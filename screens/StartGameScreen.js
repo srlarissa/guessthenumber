@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import PrimaryTitle from '../components/PrimaryTitle'
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryTitle from '../components/UI/PrimaryTitle'
+import PrimaryButton from '../components/UI/PrimaryButton';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
 import Colors from '../constants/Colors';
 
