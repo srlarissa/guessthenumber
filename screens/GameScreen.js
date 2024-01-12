@@ -9,7 +9,7 @@ import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
 import { Plus, Minus } from 'phosphor-react-native';
 
-const GameScreen = ({ userNumber }) => {
+const GameScreen = ({ userNumber, onGameOver }) => {
     let min = 1;
     let max = 100;
     let initialGuess = generateRandomNumber(max, min, userNumber);
@@ -17,9 +17,9 @@ const GameScreen = ({ userNumber }) => {
 
     useEffect(() => {
         if(guessedNumber === userNumber){
-
+            onGameOver();
         }
-    }, []);
+    }, [guessedNumber]);
 
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
