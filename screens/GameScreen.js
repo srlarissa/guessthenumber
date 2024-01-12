@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Colors from '../constants/Colors';
 import {    View, 
             Text, 
@@ -15,6 +15,12 @@ const GameScreen = ({ userNumber }) => {
     let initialGuess = generateRandomNumber(max, min, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
+    useEffect(() => {
+        if(guessedNumber === userNumber){
+
+        }
+    }, []);
+
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
     
@@ -26,10 +32,10 @@ const GameScreen = ({ userNumber }) => {
     }
     
     function nextGuessGenerator(direction){
-        if(direction == 'lower' && guessedNumber < userNumber){
+        if(direction == 'lower' && guessedNumber > userNumber){
             max = guessedNumber;
             
-        }else if(direction == 'higher' && guessedNumber > userNumber){
+        }else if(direction == 'higher' && guessedNumber < userNumber){
             min = guessedNumber + 1;
         }else{
             return Alert.alert("Don't lie!", "You know that this is wrong...", [{text: 'Sorry', style: 'cancel'}]);
