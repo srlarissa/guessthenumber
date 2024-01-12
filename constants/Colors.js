@@ -8,6 +8,10 @@ const Colors = {
     title: '#BBE8F2',
     titleBg: 'rgba(187,232,242,0.2)',
     androidShadow: '#3D5A73',
+    numberBox: '#94BDF2',
+    numberBoxBg: 'rgba(5, 147, 162,0.2)',
+    higher: '#F20F38',
+    lower: '#79D0F2',
 };
 
 export default Colors;
