@@ -27,7 +27,7 @@ const StartGameScreen = ({ onConfirmNumber  }) => {
 
     return (
         <View style={styles.screen}>
-            <PrimaryTitle>Insert your number</PrimaryTitle>
+            <PrimaryTitle>Guess The Number</PrimaryTitle>
             <View style={styles.inputContainer}>
                 <TextInput  style={styles.numberInput} 
                             maxLength={2} 
