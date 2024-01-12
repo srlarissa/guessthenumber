@@ -5,6 +5,7 @@ import {  StyleSheet,
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import Colors from './constants/Colors';
 
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
   }
 
   return (
-   <LinearGradient colors={['#012030', '#13678A']} style={styles.rootContainer}>
+   <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
       <ImageBackground  source={require('./assets/image/background.png')} 
                         resizeMode='cover' style={styles.rootContainer} 
                         imageStyle={styles.backgroundImage}>
