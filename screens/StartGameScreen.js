@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PrimaryTitle from '../components/UI/PrimaryTitle'
 import PrimaryButton from '../components/UI/PrimaryButton';
-import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, Text } from 'react-native';
 import Colors from '../constants/Colors';
 
 const StartGameScreen = ({ onConfirmNumber  }) => {
@@ -29,6 +29,7 @@ const StartGameScreen = ({ onConfirmNumber  }) => {
         <View style={styles.screen}>
             <PrimaryTitle>Guess The Number</PrimaryTitle>
             <View style={styles.inputContainer}>
+                <Text style={styles.label}>Insert your number:</Text>
                 <TextInput  style={styles.numberInput} 
                             maxLength={2} 
                             keyboardType='number-pad'
@@ -68,6 +69,12 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
         shadowOpacity: 0.25,
+    },
+    label: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: Colors.blue600,
+        marginBottom: 8,
     },
     numberInput: {
         height: 50,
