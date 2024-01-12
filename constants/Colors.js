@@ -12,6 +12,8 @@ const Colors = {
     numberBoxBg: 'rgba(5, 147, 162,0.2)',
     higher: '#F20F38',
     lower: '#79D0F2',
+    btnPlusMinusBg: 'rgba(255, 255, 255, 0.2)',
+    btnPlusMinus: '#009FCD',
 };
 
 export default Colors;
