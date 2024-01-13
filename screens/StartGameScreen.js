@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Colors from '../constants/Colors';
-import Card from '../components/UI/Card';
+import Card from '../components/game/Card';
 import PrimaryTitle from '../components/UI/PrimaryTitle'
 import PrimaryButton from '../components/UI/PrimaryButton';
 import InstructionTxt from '../components/game/InstructionTxt';

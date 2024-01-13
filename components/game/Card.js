@@ -1,4 +1,5 @@
 import { View, StyleSheet } from 'react-native';
+import Colors from '../../constants/Colors';
 
 const Card = ({children}) => {
     return (
@@ -21,7 +22,8 @@ const styles = StyleSheet.create({
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
-        shadowOpacity: 0.25,    }
+        shadowOpacity: 0.25,    
+    }
 });
 
 export default Card;
