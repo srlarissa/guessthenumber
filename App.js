@@ -4,12 +4,14 @@ import {  StyleSheet,
           SafeAreaView } from 'react-native';
 import Colors from './constants/Colors';
 import GameScreen from './screens/GameScreen';
+import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
-import GameOverScreen from './screens/GameOverScreen'
 import StartGameScreen from './screens/StartGameScreen';
 
 
 export default function App() {
+ 
+
   const [playerNumber, setPlayerNumber] = useState(null);
   const [gameOver, setGameOver] = useState(true);
 
