@@ -8,6 +8,7 @@ import {    View,
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
 import { Plus, Minus } from 'phosphor-react-native';
+import Card from '../components/game/Card';
 
 const GameScreen = ({ userNumber, onGameOver }) => {
     let min = 1;
@@ -47,24 +48,25 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         <View style={styles.screen}>
             <PrimaryTitle>Opponent's Guess</PrimaryTitle>
             <NumberContainer>{guessedNumber}</NumberContainer>
-            <View style={styles.btnContainer}>
-                <Pressable onPress={() => nextGuessGenerator('higher')}>
-                    <View style={styles.btn}>
-                        <Plus weight='bold' color={Colors.btnTxt} />
+            <Card>
+                <View style={styles.cardContainer}>
+                    <Pressable onPress={() => nextGuessGenerator('higher')}>
+                        <View style={styles.btn}>
+                            <Plus weight='bold' color={Colors.btnTxt} />
+                        </View>
+                    </Pressable>
+                    <View style={styles.btnTitleContainer}>
+                        <Text style={styles.higherLower}>Higher </Text>
+                        <Text style={styles.or}>OR </Text>
+                        <Text style={styles.higherLower}>Lower </Text>
                     </View>
-                </Pressable>
-                <View style={styles.btnTitleContainer}>
-                    <Text style={styles.higher}>Higher </Text>
-                    <Text style={styles.or}>OR </Text>
-                    <Text style={styles.lower}>Lower </Text>
-                    <Text style={styles.or}>?</Text>
+                    <Pressable onPress={() => nextGuessGenerator('lower')}>
+                        <View style={styles.btn}>
+                            <Minus weight='bold' color={Colors.btnTxt} />
+                        </View>
+                    </Pressable>
                 </View>
-                <Pressable onPress={() => nextGuessGenerator('lower')}>
-                    <View style={styles.btn}>
-                        <Minus weight='bold' color={Colors.btnTxt} />
-                    </View>
-                </Pressable>
-            </View>
+            </Card>
         </View>
     );
 };
@@ -76,14 +78,18 @@ const styles = StyleSheet.create({
         flex:1,
         padding:24,
     },
+    cardContainer:{
+       flexDirection: 'row', 
+    },
     btnContainer:{
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        gap:12,
     },
     btnTitleContainer:{
-        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 24,
     },
     btn:{
         backgroundColor:Colors.btnPlusMinusBg,
@@ -94,21 +100,15 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         padding:24,
     },
-    higher:{
-        color:Colors.higher,
+    higherLower:{
+        color:Colors.btnTxt,
         fontWeight: '800',
-        fontSize: 24,
-        textDecorationLine:'underline',
-    },
-    lower:{
-        color:Colors.lower,
-        fontWeight: '800',
-        fontSize: 24,
+        fontSize: 22,
         textDecorationLine:'underline',
     },
     or:{
        color: Colors.btnTxt,
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '500',
     }
 
