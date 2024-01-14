@@ -10,7 +10,7 @@ const Colors = {
     androidShadow: '#3D5A73',
     numberBox: '#94BDF2',
     numberBoxBg: 'rgba(5, 147, 162,0.2)',
-    higher: '#F20F38',
+    higher: '#F23D3D',
     lower: '#79D0F2',
     btnPlusMinusBg: 'rgba(255, 255, 255, 0.2)',
     btnPlusMinus: '#009FCD',
