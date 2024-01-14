@@ -5,6 +5,7 @@ import PrimaryTitle from '../components/UI/PrimaryTitle'
 import PrimaryButton from '../components/UI/PrimaryButton';
 import InstructionTxt from '../components/game/InstructionTxt';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import InstructionBox from '../components/UI/InstructionBox';
 
 const StartGameScreen = ({ onConfirmNumber  }) => {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -49,6 +50,7 @@ const StartGameScreen = ({ onConfirmNumber  }) => {
                     </View>
                 </View>
             </Card>
+            <InstructionBox title={<PrimaryTitle>Instructions</PrimaryTitle>} />
         </View>
     );
 };

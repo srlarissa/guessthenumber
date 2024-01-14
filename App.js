@@ -8,12 +8,13 @@ import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
-import { useFonts, Mukta_800ExtraBold, Mukta_400Regular } from '@expo-google-fonts/mukta';
+import { useFonts, Mukta_800ExtraBold, Mukta_400Regular, Mukta_500Medium } from '@expo-google-fonts/mukta';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     Mukta_800ExtraBold,
     Mukta_400Regular,
+    Mukta_500Medium
   });
 
   const [playerNumber, setPlayerNumber] = useState(null);
