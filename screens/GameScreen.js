@@ -11,6 +11,7 @@ import { Plus, Minus } from 'phosphor-react-native';
 import Card from '../components/game/Card';
 
 const GameScreen = ({ userNumber, onGameOver }) => {
+    
     let min = 1;
     let max = 100;
     let initialGuess = generateRandomNumber(100, 1, userNumber);
@@ -56,9 +57,9 @@ const GameScreen = ({ userNumber, onGameOver }) => {
                         </View>
                     </Pressable>
                     <View style={styles.btnTitleContainer}>
-                        <Text style={styles.higherLower}>Higher </Text>
+                        <Text style={styles.higher}>Higher </Text>
                         <Text style={styles.or}>OR </Text>
-                        <Text style={styles.higherLower}>Lower </Text>
+                        <Text style={styles.lower}>Lower </Text>
                     </View>
                     <Pressable onPress={() => nextGuessGenerator('lower')}>
                         <View style={styles.btn}>
@@ -80,6 +81,8 @@ const styles = StyleSheet.create({
     },
     cardContainer:{
        flexDirection: 'row', 
+       alignItems: 'center',
+       justifyContent: 'center',
     },
     btnContainer:{
         flexDirection: 'row',
@@ -100,16 +103,26 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         padding:24,
     },
-    higherLower:{
-        color:Colors.btnTxt,
+    higher:{
+        fontFamily:'Mukta_800ExtraBold',
+        color:Colors.higher,
         fontWeight: '800',
-        fontSize: 22,
+        fontSize: 32,
+        textDecorationLine:'underline',
+    },
+    lower:{
+        fontFamily:'Mukta_800ExtraBold',
+        color:Colors.lower,
+        fontWeight: '800',
+        fontSize: 32,
         textDecorationLine:'underline',
     },
     or:{
-       color: Colors.btnTxt,
+        fontFamily:'Mukta_400Regular',
+        color: Colors.btnTxt,
         fontSize: 20,
         fontWeight: '500',
+        paddingTop:12,
     }
 
 })
