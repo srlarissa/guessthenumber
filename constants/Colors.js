@@ -13,6 +13,7 @@ const Colors = {
     higher: '#F23D3D',
     lower: '#79D0F2',
     btnPlusMinusBg: 'rgba(255, 255, 255, 0.2)',
+    btnInstructionBg: 'rgba(0, 84, 127, 0.5)',
     btnPlusMinus: '#009FCD',
 };
 
