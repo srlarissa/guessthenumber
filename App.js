@@ -1,16 +1,20 @@
 import {  useState } from 'react';
 import {  StyleSheet, 
           ImageBackground,
-          SafeAreaView } from 'react-native';
+          SafeAreaView,
+          ActivityIndicator } from 'react-native';
 import Colors from './constants/Colors';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
-
+import { useFonts, Mukta_800ExtraBold, Mukta_400Regular } from '@expo-google-fonts/mukta';
 
 export default function App() {
- 
+  const [fontsLoaded] = useFonts({
+    Mukta_800ExtraBold,
+    Mukta_400Regular,
+  });
 
   const [playerNumber, setPlayerNumber] = useState(null);
   const [gameOver, setGameOver] = useState(true);
@@ -35,15 +39,15 @@ export default function App() {
   }
 
   return (
-   <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
-      <ImageBackground  source={require('./assets/image/background.png')} 
-                        resizeMode='cover' style={styles.rootContainer} 
-                        imageStyle={styles.backgroundImage}>
-        <SafeAreaView style={styles.rootContainer}>
-          { screen }
-        </SafeAreaView>
-      </ImageBackground>      
-   </LinearGradient>
+        <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
+           <ImageBackground  source={require('./assets/image/background.png')} 
+                             resizeMode='cover' style={styles.rootContainer} 
+                             imageStyle={styles.backgroundImage}>
+             <SafeAreaView style={styles.rootContainer}>
+               { fontsLoaded ? screen : <ActivityIndicator color={Colors.btnTxt} />}
+             </SafeAreaView>
+           </ImageBackground>      
+        </LinearGradient>
   );
 }
 
