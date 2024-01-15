@@ -8,7 +8,7 @@ const InstructionBox = ({title}) => {
             <Text style={styles.instructionText}>Step 1: Insert a number between 1 and 99 then press Confirm.</Text>
             <Text style={styles.instructionText}>Step 2: On the next screen a opponent's guess will show.</Text>
             <Text style={styles.instructionText}>Step 3: If your number is higher than the opponent's guess, press the plus button, or else press the minus one. </Text>
-            <Text style={styles.instructionText}>Step 4: Repeat steps 2 and 3 until the opponent's guess is equal to your number.</Text>
+            <Text style={styles.instructionText}>Step 4: Repeat step 3 until the opponent's guess is equal to your number.</Text>
         </View>
     );
 };
