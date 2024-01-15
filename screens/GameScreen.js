@@ -3,7 +3,6 @@ import Colors from '../constants/Colors';
 import {    View, 
             Text, 
             StyleSheet, 
-            Pressable, 
             Alert} from 'react-native';
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
@@ -11,10 +10,10 @@ import { Plus, Minus } from 'phosphor-react-native';
 import Card from '../components/game/Card';
 import PrimaryButton from '../components/UI/PrimaryButton';
 
+let minRef = 1;
+let maxRef = 100;
+
 const GameScreen = ({ userNumber, onGameOver }) => {
-    
-    let min = 1;
-    let max = 100;
     let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
@@ -26,9 +25,8 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
-    
         if(rndNumber === exclude){
-            return generateRandomNumber(max, min, exclude);
+            return generateRandomNumber(maxRef, minRef, exclude);
         }else{
             return rndNumber;
         }
@@ -36,14 +34,13 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     
     function nextGuessGenerator(direction){
         if(direction == 'lower' && guessedNumber > userNumber){
-            max = guessedNumber;
-            
+            maxRef = guessedNumber - 1;
         }else if(direction == 'higher' && guessedNumber < userNumber){
-            min = guessedNumber + 1;
+            minRef = guessedNumber;
         }else{
             return Alert.alert("Don't lie!", "You know that this is wrong...", [{text: 'Sorry', style: 'cancel'}]);
         }
-        const newRndNumber = generateRandomNumber(max, min, guessedNumber);
+        const newRndNumber = generateRandomNumber(maxRef, minRef, guessedNumber);
         setGuessedNumber(newRndNumber);
     }
     return (
