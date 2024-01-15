@@ -25,7 +25,6 @@ export default function App() {
   function restartGameHandler(){
     setPlayerNumber();
     setRounds(0);
-    console.log('restartGameHandler');
   }
   function roundNumberHandler(){
     setRounds(rounds + 1);
