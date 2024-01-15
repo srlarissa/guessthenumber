@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
 import Colors from '../constants/Colors';
+import Card from '../components/game/Card';
+import { useState, useEffect } from 'react';
+import GuessLog from '../components/game/GuessLog';
+import { Plus, Minus } from 'phosphor-react-native';
+import PrimaryTitle from '../components/UI/PrimaryTitle';
+import PrimaryButton from '../components/UI/PrimaryButton';
+import NumberContainer from '../components/game/NumberContainer';
 import {    View, 
             Text, 
             StyleSheet, 
             Alert,
             FlatList} from 'react-native';
-import PrimaryTitle from '../components/UI/PrimaryTitle';
-import NumberContainer from '../components/game/NumberContainer';
-import { Plus, Minus } from 'phosphor-react-native';
-import Card from '../components/game/Card';
-import PrimaryButton from '../components/UI/PrimaryButton';
 
 let minRef = 1;
 let maxRef = 100;
@@ -75,14 +76,13 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
                     </View>
                 </View>
             </Card>
-            <View>
+            <View style={styles.guessList}>
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={roundLogs}
                 keyExtractor={(index) => index.toString()}
                 renderItem={({ item }) => (
-                    <View style={styles.roundLogItem}>
-                        <Text style={styles.roundLogText}>{item}</Text>
-                    </View>
+                    <GuessLog guessNumber={roundLogs.length - roundLogs.indexOf(item)} guess={item} />
                 )}
             />
             </View>
@@ -134,6 +134,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '500',
         paddingHorizontal: 8,
+    },
+    guessList:{
+        flex:1,
+        padding: 16,
     }
 
 })
