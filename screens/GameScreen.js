@@ -9,6 +9,7 @@ import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
 import { Plus, Minus } from 'phosphor-react-native';
 import Card from '../components/game/Card';
+import PrimaryButton from '../components/UI/PrimaryButton';
 
 const GameScreen = ({ userNumber, onGameOver }) => {
     
@@ -50,22 +51,22 @@ const GameScreen = ({ userNumber, onGameOver }) => {
             <PrimaryTitle>Opponent's Guess</PrimaryTitle>
             <NumberContainer>{guessedNumber}</NumberContainer>
             <Card>
-                <View style={styles.cardContainer}>
-                    <Pressable onPress={() => nextGuessGenerator('higher')}>
-                        <View style={styles.btn}>
+                <View style={styles.btnTitleContainer}>
+                    <Text style={styles.higher}>Higher </Text>
+                    <Text style={styles.or}>OR </Text>
+                    <Text style={styles.lower}>Lower </Text>
+                </View>
+                <View style={styles.btnContainer}>
+                    <View style={styles.btn}>
+                        <PrimaryButton btnHandler={() => nextGuessGenerator('higher')}>
                             <Plus weight='bold' color={Colors.btnTxt} />
-                        </View>
-                    </Pressable>
-                    <View style={styles.btnTitleContainer}>
-                        <Text style={styles.higher}>Higher </Text>
-                        <Text style={styles.or}>OR </Text>
-                        <Text style={styles.lower}>Lower </Text>
+                        </PrimaryButton>
                     </View>
-                    <Pressable onPress={() => nextGuessGenerator('lower')}>
-                        <View style={styles.btn}>
+                    <View style={styles.btn}>
+                        <PrimaryButton btnHandler={() => nextGuessGenerator('lower')}>
                             <Minus weight='bold' color={Colors.btnTxt} />
-                        </View>
-                    </Pressable>
+                        </PrimaryButton>
+                    </View>
                 </View>
             </Card>
         </View>
@@ -86,35 +87,28 @@ const styles = StyleSheet.create({
     },
     btnContainer:{
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginTop: 8,
     },
     btnTitleContainer:{
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 24,
     },
     btn:{
-        backgroundColor:Colors.btnPlusMinusBg,
-        borderWidth:2,
-        borderColor: Colors.btnTxt,
-        borderRadius:100,
-        alignItems:'center',
-        justifyContent:'center',
-        padding:24,
+        flex:1,
     },
     higher:{
         fontFamily:'Mukta_800ExtraBold',
         color:Colors.higher,
         fontWeight: '800',
-        fontSize: 32,
+        fontSize: 28,
         textDecorationLine:'underline',
     },
     lower:{
         fontFamily:'Mukta_800ExtraBold',
         color:Colors.lower,
         fontWeight: '800',
-        fontSize: 32,
+        fontSize: 28,
         textDecorationLine:'underline',
     },
     or:{
@@ -122,7 +116,7 @@ const styles = StyleSheet.create({
         color: Colors.btnTxt,
         fontSize: 20,
         fontWeight: '500',
-        paddingTop:12,
+        paddingHorizontal: 8,
     }
 
 })
