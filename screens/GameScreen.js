@@ -23,6 +23,11 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
         }
     }, [guessedNumber, userNumber, onGameOver]);
 
+    useEffect(() => {
+        minRef = 1;
+        maxRef = 100;
+    },[]);
+
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
         if(rndNumber === exclude){
