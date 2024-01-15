@@ -9,7 +9,6 @@ import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 import { useFonts, Mukta_800ExtraBold, Mukta_400Regular, Mukta_500Medium } from '@expo-google-fonts/mukta';
-import Splash from './screens/Splash';
 
 export default function App() {
   const [playerNumber, setPlayerNumber] = useState();
