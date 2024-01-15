@@ -13,7 +13,7 @@ import PrimaryButton from '../components/UI/PrimaryButton';
 let minRef = 1;
 let maxRef = 100;
 
-const GameScreen = ({ userNumber, onGameOver }) => {
+const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
     let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
@@ -34,14 +34,15 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     
     function nextGuessGenerator(direction){
         if(direction == 'lower' && guessedNumber > userNumber){
-            maxRef = guessedNumber - 1;
+            maxRef = guessedNumber;
         }else if(direction == 'higher' && guessedNumber < userNumber){
-            minRef = guessedNumber;
+            minRef = guessedNumber + 1;
         }else{
             return Alert.alert("Don't lie!", "You know that this is wrong...", [{text: 'Sorry', style: 'cancel'}]);
         }
         const newRndNumber = generateRandomNumber(maxRef, minRef, guessedNumber);
         setGuessedNumber(newRndNumber);
+        roundNumberHandler();
     }
     return (
         <View style={styles.screen}>

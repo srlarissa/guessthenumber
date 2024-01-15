@@ -11,14 +11,25 @@ import StartGameScreen from './screens/StartGameScreen';
 import { useFonts, Mukta_800ExtraBold, Mukta_400Regular, Mukta_500Medium } from '@expo-google-fonts/mukta';
 
 export default function App() {
+  const [playerNumber, setPlayerNumber] = useState();
+  const [gameOver, setGameOver] = useState(true);
+  const [rounds, setRounds] = useState(0);
+  
   const [fontsLoaded] = useFonts({
     Mukta_800ExtraBold,
     Mukta_400Regular,
     Mukta_500Medium
   });
 
-  const [playerNumber, setPlayerNumber] = useState(null);
-  const [gameOver, setGameOver] = useState(true);
+  
+  function restartGameHandler(){
+    setPlayerNumber();
+    setRounds(0);
+    console.log('restartGameHandler');
+  }
+  function roundNumberHandler(){
+    setRounds(rounds + 1);
+  }
 
   function playerPickedNumber(pickedNumber){
     setPlayerNumber(pickedNumber)
@@ -29,14 +40,15 @@ export default function App() {
     setGameOver(true)
   }
 
+
   let screen = <StartGameScreen onConfirmNumber={playerPickedNumber}  />
 
   if(playerNumber){
-    screen = <GameScreen userNumber={playerNumber} onGameOver={gameOverHandler} />
+    screen = (<GameScreen userNumber={playerNumber} onGameOver={gameOverHandler} roundNumberHandler={roundNumberHandler} />);
   }
 
   if(gameOver && playerNumber){
-    screen = <GameOverScreen />
+    screen = (<GameOverScreen userNumber={playerNumber} roundsNumber={rounds} onStartNewGame={restartGameHandler} />);
   }
 
   return (
