@@ -3,7 +3,8 @@ import Colors from '../constants/Colors';
 import {    View, 
             Text, 
             StyleSheet, 
-            Alert} from 'react-native';
+            Alert,
+            FlatList} from 'react-native';
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import NumberContainer from '../components/game/NumberContainer';
 import { Plus, Minus } from 'phosphor-react-native';
@@ -16,6 +17,7 @@ let maxRef = 100;
 const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
     let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
+    const [roundLogs, setRoundLogs] = useState([initialGuess]);
 
     useEffect(() => {
         if(guessedNumber === userNumber){
@@ -48,6 +50,7 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
         const newRndNumber = generateRandomNumber(maxRef, minRef, guessedNumber);
         setGuessedNumber(newRndNumber);
         roundNumberHandler();
+        setRoundLogs((currentRoundLogs) => [newRndNumber, ...currentRoundLogs]);
     }
     return (
         <View style={styles.screen}>
@@ -72,6 +75,17 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
                     </View>
                 </View>
             </Card>
+            <View>
+            <FlatList
+                data={roundLogs}
+                keyExtractor={(index) => index.toString()}
+                renderItem={({ item }) => (
+                    <View style={styles.roundLogItem}>
+                        <Text style={styles.roundLogText}>{item}</Text>
+                    </View>
+                )}
+            />
+            </View>
         </View>
     );
 };
