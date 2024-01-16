@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
-import {  useState } from 'react';
 import {  StyleSheet, 
           ImageBackground,
           SafeAreaView,
-          ActivityIndicator } from 'react-native';
+          ActivityIndicator,
+          StatusBar } from 'react-native';
 import Colors from './constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Mukta_800ExtraBold, Mukta_400Regular, Mukta_500Medium } from '@expo-google-fonts/mukta';
@@ -24,6 +24,7 @@ export default function App() {
            <ImageBackground  source={require('./assets/image/background.png')} 
                              resizeMode='cover' style={styles.rootContainer} 
                              imageStyle={styles.backgroundImage}>
+            <StatusBar barStyle="light-content" />
              <SafeAreaView style={styles.rootContainer}>
                { fontsLoaded ?  <AppRoutes /> : <ActivityIndicator color={Colors.btnTxt} />}
              </SafeAreaView>
