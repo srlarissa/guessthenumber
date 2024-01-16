@@ -3,19 +3,25 @@ import Card from '../components/game/Card';
 import { useState, useEffect } from 'react';
 import GuessLog from '../components/game/GuessLog';
 import { Plus, Minus } from 'phosphor-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import PrimaryButton from '../components/UI/PrimaryButton';
 import NumberContainer from '../components/game/NumberContainer';
+import { useNavigation } from '@react-navigation/native';
 import {    View, 
             Text, 
             StyleSheet, 
             Alert,
-            FlatList} from 'react-native';
+            FlatList,
+            ImageBackground} from 'react-native';
 
 let minRef = 1;
 let maxRef = 100;
 
-const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
+const GameScreen = ({ route }) => {
+    const navigation = useNavigation();
+    const { userNumber } = route.params;
+
     let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
     const [roundLogs, setRoundLogs] = useState([initialGuess]);
@@ -30,6 +36,10 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
         minRef = 1;
         maxRef = 100;
     },[]);
+
+    function onGameOver(){
+        navigation.navigate('GameOver');
+    }
 
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -50,43 +60,48 @@ const GameScreen = ({ userNumber, onGameOver, roundNumberHandler }) => {
         }
         const newRndNumber = generateRandomNumber(maxRef, minRef, guessedNumber);
         setGuessedNumber(newRndNumber);
-        roundNumberHandler();
         setRoundLogs((currentRoundLogs) => [newRndNumber, ...currentRoundLogs]);
     }
     return (
-        <View style={styles.screen}>
-            <PrimaryTitle>Opponent's Guess</PrimaryTitle>
-            <NumberContainer>{guessedNumber}</NumberContainer>
-            <Card>
-                <View style={styles.btnTitleContainer}>
-                    <Text style={styles.higher}>Higher </Text>
-                    <Text style={styles.or}>OR </Text>
-                    <Text style={styles.lower}>Lower </Text>
-                </View>
-                <View style={styles.btnContainer}>
-                    <View style={styles.btn}>
-                        <PrimaryButton btnHandler={() => nextGuessGenerator('higher')}>
-                            <Plus weight='bold' color={Colors.btnTxt} />
-                        </PrimaryButton>
+        <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
+           <ImageBackground  source={require('../assets/image/background.png')} 
+                             resizeMode='cover' style={styles.rootContainer} 
+                             imageStyle={styles.backgroundImage}>
+                <View style={styles.screen}>
+                    <PrimaryTitle>Opponent's Guess</PrimaryTitle>
+                    <NumberContainer>{guessedNumber}</NumberContainer>
+                    <Card>
+                        <View style={styles.btnTitleContainer}>
+                            <Text style={styles.higher}>Higher </Text>
+                            <Text style={styles.or}>OR </Text>
+                            <Text style={styles.lower}>Lower </Text>
+                        </View>
+                        <View style={styles.btnContainer}>
+                            <View style={styles.btn}>
+                                <PrimaryButton btnHandler={() => nextGuessGenerator('higher')}>
+                                    <Plus weight='bold' color={Colors.btnTxt} />
+                                </PrimaryButton>
+                            </View>
+                            <View style={styles.btn}>
+                                <PrimaryButton btnHandler={() => nextGuessGenerator('lower')}>
+                                    <Minus weight='bold' color={Colors.btnTxt} />
+                                </PrimaryButton>
+                            </View>
+                        </View>
+                    </Card>
+                    <View style={styles.guessList}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={roundLogs}
+                        keyExtractor={(index) => index.toString()}
+                        renderItem={({ item }) => (
+                            <GuessLog guessNumber={roundLogs.length - roundLogs.indexOf(item)} guess={item} />
+                        )}
+                    />
                     </View>
-                    <View style={styles.btn}>
-                        <PrimaryButton btnHandler={() => nextGuessGenerator('lower')}>
-                            <Minus weight='bold' color={Colors.btnTxt} />
-                        </PrimaryButton>
-                    </View>
                 </View>
-            </Card>
-            <View style={styles.guessList}>
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={roundLogs}
-                keyExtractor={(index) => index.toString()}
-                renderItem={({ item }) => (
-                    <GuessLog guessNumber={roundLogs.length - roundLogs.indexOf(item)} guess={item} />
-                )}
-            />
-            </View>
-        </View>
+            </ImageBackground>
+        </LinearGradient>
     );
 };
 
@@ -138,6 +153,12 @@ const styles = StyleSheet.create({
     guessList:{
         flex:1,
         padding: 16,
-    }
+    },
+    rootContainer: {
+        flex: 1,
+      },
+      backgroundImage: {
+        opacity: 0.3,
+      },
 
 })

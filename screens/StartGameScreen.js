@@ -3,13 +3,16 @@ import Colors from '../constants/Colors';
 import Card from '../components/game/Card';
 import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryTitle from '../components/UI/PrimaryTitle'
+import { useNavigation } from '@react-navigation/native';
 import PrimaryButton from '../components/UI/PrimaryButton';
 import InstructionBox from '../components/UI/InstructionBox';
 import InstructionTxt from '../components/game/InstructionTxt';
 import { View, TextInput, StyleSheet, Alert, ImageBackground } from 'react-native';
 
+const StartGameScreen = () => {
 
-const StartGameScreen = ({ onConfirmNumber  }) => {
+    const navigation = useNavigation();
+
     const [enteredNumber, setEnteredNumber] = useState('');
 
     function enteredNumberHandler(playerNumber){
@@ -23,7 +26,7 @@ const StartGameScreen = ({ onConfirmNumber  }) => {
             Alert.alert('Invalid number!', 'The number has to be between 1 and 99!', [{text: 'Ok', style: 'destructive', onPress: resetInputHandler}])
             return
         }
-        onConfirmNumber(chosenNumber);
+        navigation.navigate('Game', {userNumber: chosenNumber})
     }
 
     function resetInputHandler(){
