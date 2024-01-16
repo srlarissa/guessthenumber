@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Colors from '../constants/Colors';
 import Card from '../components/game/Card';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,9 +7,18 @@ import { useNavigation } from '@react-navigation/native';
 import PrimaryButton from '../components/UI/PrimaryButton';
 import InstructionBox from '../components/UI/InstructionBox';
 import InstructionTxt from '../components/game/InstructionTxt';
-import { View, TextInput, StyleSheet, Alert, ImageBackground } from 'react-native';
+import {    View, 
+            TextInput, 
+            StyleSheet, 
+            Alert, 
+            ImageBackground,
+            BackHandler } from 'react-native';
 
 const StartGameScreen = () => {
+
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => true);
+    }, []);
 
     const navigation = useNavigation();
 
