@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Colors from '../constants/Colors';
 import Card from '../components/game/Card';
+import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryTitle from '../components/UI/PrimaryTitle'
 import PrimaryButton from '../components/UI/PrimaryButton';
-import InstructionTxt from '../components/game/InstructionTxt';
-import { View, TextInput, StyleSheet, Alert } from 'react-native';
 import InstructionBox from '../components/UI/InstructionBox';
+import InstructionTxt from '../components/game/InstructionTxt';
+import { View, TextInput, StyleSheet, Alert, ImageBackground } from 'react-native';
+
 
 const StartGameScreen = ({ onConfirmNumber  }) => {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -29,29 +31,35 @@ const StartGameScreen = ({ onConfirmNumber  }) => {
     }
 
     return (
-        <View style={styles.screen}>
-            <PrimaryTitle>Guess The Number</PrimaryTitle>
-            <Card>
-                <InstructionTxt />
-                <TextInput  style={styles.numberInput} 
-                            maxLength={2} 
-                            keyboardType='number-pad'
-                            autoCapitalize='none'
-                            autoCorrect={false} 
-                            onChangeText={enteredNumberHandler}
-                            value={enteredNumber}
-                />
-                <View style={styles.buttonsContainer}>
-                    <View style={styles.buttonContainer}>
-                        <PrimaryButton btnHandler={resetInputHandler}>Reset</PrimaryButton>
-                    </View>
-                    <View style={styles.buttonContainer}>
-                        <PrimaryButton btnHandler={confirmInputHandler}>Confirm</PrimaryButton>
-                    </View>
+        <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
+           <ImageBackground  source={require('../assets/image/background.png')} 
+                             resizeMode='cover' style={styles.rootContainer} 
+                             imageStyle={styles.backgroundImage}>
+                <View style={styles.screen}>
+                    <PrimaryTitle>Guess The Number</PrimaryTitle>
+                    <Card>
+                        <InstructionTxt />
+                        <TextInput  style={styles.numberInput} 
+                                    maxLength={2} 
+                                    keyboardType='number-pad'
+                                    autoCapitalize='none'
+                                    autoCorrect={false} 
+                                    onChangeText={enteredNumberHandler}
+                                    value={enteredNumber}
+                        />
+                        <View style={styles.buttonsContainer}>
+                            <View style={styles.buttonContainer}>
+                                <PrimaryButton btnHandler={resetInputHandler}>Reset</PrimaryButton>
+                            </View>
+                            <View style={styles.buttonContainer}>
+                                <PrimaryButton btnHandler={confirmInputHandler}>Confirm</PrimaryButton>
+                            </View>
+                        </View>
+                    </Card>
+                    <InstructionBox title={<PrimaryTitle>Instructions</PrimaryTitle>} />
                 </View>
-            </Card>
-            <InstructionBox title={<PrimaryTitle>Instructions</PrimaryTitle>} />
-        </View>
+            </ImageBackground>
+        </LinearGradient>
     );
 };
 
@@ -77,6 +85,12 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
     },
+    rootContainer: {
+        flex: 1,
+      },
+      backgroundImage: {
+        opacity: 0.3,
+      },
 });
 
 export default StartGameScreen;
