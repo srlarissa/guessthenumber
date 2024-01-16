@@ -1,26 +1,45 @@
 import Colors from '../constants/Colors';
 import LottieView from 'lottie-react-native';
-import { View, Text, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import PrimaryTitle from '../components/UI/PrimaryTitle';
 import PrimaryButton from '../components/UI/PrimaryButton';
+import { useNavigation } from '@react-navigation/native';
+import {    View, 
+            Text, 
+            StyleSheet, 
+            ImageBackground } from 'react-native';
 
-const GameOverScreen = ({roundsNumber, userNumber, onStartNewGame}) => {
+const GameOverScreen = ({ route }) => {
+
+    const { roundsNumber, userNumber } = route.params;
+    const navigation = useNavigation();
+
+    function newGameHandler(){
+        navigation.navigate('InsertNumber');
+    }
+
     return (
-        <View style={styles.screen}>
-            <View style={styles.titleContainer}>
-                <PrimaryTitle>WELL DONE!</PrimaryTitle>
-            </View>
-            <View>
-                <LottieView
-                    source={require('../assets/image/animation/welldone.json')}
-                    autoPlay
-                    loop={false}
-                    style={{width: 400, height: 400}}   
-                />
-            </View>
-            <Text style={styles.summaryTxt}>Your phone needed <Text style={styles.summaryTxthighlight} >{roundsNumber}</Text> rounds to guess the number <Text style={styles.summaryTxthighlight} >{userNumber}</Text></Text>  
-            <PrimaryButton btnHandler={onStartNewGame}>START NEW GAME</PrimaryButton>
-        </View>
+        <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
+           <ImageBackground  source={require('../assets/image/background.png')} 
+                             resizeMode='cover' style={styles.rootContainer} 
+                             imageStyle={styles.backgroundImage}>
+                <View style={styles.screen}>
+                    <View style={styles.titleContainer}>
+                        <PrimaryTitle>WELL DONE!</PrimaryTitle>
+                    </View>
+                    <View>
+                        <LottieView
+                            source={require('../assets/image/animation/welldone.json')}
+                            autoPlay
+                            loop={false}
+                            style={{width: 400, height: 400}}   
+                        />
+                    </View>
+                    <Text style={styles.summaryTxt}>Your phone needed <Text style={styles.summaryTxthighlight} >{roundsNumber}</Text> rounds to guess the number <Text style={styles.summaryTxthighlight} >{userNumber}</Text></Text>  
+                    <PrimaryButton btnHandler={newGameHandler}>START NEW GAME</PrimaryButton>
+                </View>
+            </ImageBackground>
+        </LinearGradient>
     );
 };
 
@@ -45,5 +64,11 @@ const styles = StyleSheet.create({
     summaryTxthighlight:{
         color:Colors.higher,
         fontFamily:'Mukta_800ExtraBold',
-    }
+    },
+    rootContainer: {
+        flex: 1,
+      },
+      backgroundImage: {
+        opacity: 0.3,
+      },
 });

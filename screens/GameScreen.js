@@ -38,7 +38,7 @@ const GameScreen = ({ route }) => {
     },[]);
 
     function onGameOver(){
-        navigation.navigate('GameOver');
+        navigation.navigate('GameOver', {roundsNumber: roundLogs.length, userNumber: userNumber});
     }
 
     function generateRandomNumber(max, min, exclude){

@@ -27,6 +27,7 @@ const StartGameScreen = () => {
             return
         }
         navigation.navigate('Game', {userNumber: chosenNumber})
+        setEnteredNumber('');
     }
 
     function resetInputHandler(){

@@ -11,45 +11,13 @@ import { Pacifico_400Regular } from '@expo-google-fonts/pacifico';
 
 import { AppRoutes } from './routes';
 
-export default function App() {
-  const [playerNumber, setPlayerNumber] = useState();
-  const [gameOver, setGameOver] = useState(true);
-  const [rounds, setRounds] = useState(0);
-  
+export default function App() {  
   const [fontsLoaded] = useFonts({
     Mukta_800ExtraBold,
     Mukta_400Regular,
     Mukta_500Medium,
     Pacifico_400Regular,
   });
-
-  
-  // function restartGameHandler(){
-  //   setPlayerNumber();
-  //   setRounds(0);
-  // }
-  // function roundNumberHandler(){
-  //   setRounds(rounds + 1);
-  // }
-
-  // function playerPickedNumber(pickedNumber){
-  //   setPlayerNumber(pickedNumber)
-  //   setGameOver(false)
-  // }
-
-  // function gameOverHandler(){
-  //   setGameOver(true)
-  // }
-  
-  // let screen = <StartGameScreen onConfirmNumber={playerPickedNumber}  />;
-
-  // if(playerNumber){
-  //   screen = (<GameScreen userNumber={playerNumber} onGameOver={gameOverHandler} roundNumberHandler={roundNumberHandler} />);
-  // }
-
-  // if(gameOver && playerNumber){
-  //   screen = (<GameOverScreen userNumber={playerNumber} roundsNumber={rounds} onStartNewGame={restartGameHandler} />);
-  // }
 
   return (
         <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
