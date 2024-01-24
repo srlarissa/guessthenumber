@@ -9,7 +9,6 @@ export default PrimaryTitle;
 
 const styles = StyleSheet.create({
     title:{
-        fontFamily: 'Arial',
         fontSize: 24,
         fontWeight:'bold',
         color: Colors.title,

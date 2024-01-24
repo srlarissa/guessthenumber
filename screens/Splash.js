@@ -17,7 +17,7 @@ export function Splash(){
                     <View>
                         <LottieView
                             source={require('../assets/image/animation/dicesplash.json')}
-                            autoPlay
+                            autoPlay={true}
                             loop={false}
                             style={{width: 400, height: 400}}
                             onAnimationFinish={() => {navigation.navigate('InsertNumber')}}   
