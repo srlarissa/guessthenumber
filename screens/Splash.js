@@ -2,9 +2,14 @@ import React from 'react';
 import Colors from '../constants/Colors';
 import LottieView from 'lottie-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, ImageBackground, StyleSheet, Text } from 'react-native';
+import {    View, 
+            ImageBackground, 
+            StyleSheet, 
+            Text,
+            Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+const deviceWidth = Dimensions.get('window').width;
 
 export function Splash(){
     const navigation = useNavigation();
@@ -14,12 +19,12 @@ export function Splash(){
                              resizeMode='cover' style={styles.rootContainer} 
                              imageStyle={styles.backgroundImage}>
                 <View style={{flex: 1}}>
-                    <View>
+                    <View style={styles.animationContainer}>
                         <LottieView
                             source={require('../assets/image/animation/dicesplash.json')}
                             autoPlay={true}
                             loop={false}
-                            style={{width: 400, height: 400}}
+                            style={{width: deviceWidth < 380 ? 150 : 300, height: deviceWidth < 380 ? 150 : 300}}
                             onAnimationFinish={() => {navigation.navigate('InsertNumber')}}   
                         />
                     </View>
@@ -40,6 +45,10 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
       opacity: 0.3,
+    },
+    animationContainer: {
+        alignItems:'center',
+        justifyContent:'center',
     },
     txtContainer:{
         alignItems:'center',
