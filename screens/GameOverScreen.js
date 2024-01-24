@@ -7,7 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import {    View, 
             Text, 
             StyleSheet, 
-            ImageBackground } from 'react-native';
+            ImageBackground,
+            Dimensions  } from 'react-native';
+
+const deviceWidth = Dimensions.get('window').width;
 
 const GameOverScreen = ({ route }) => {
 
@@ -29,10 +32,10 @@ const GameOverScreen = ({ route }) => {
                     </View>
                     <View>
                         <LottieView
-                            source={require('../assets/image/animation/welldone.json')}
+                            source={require('../assets/image/animation/victory.json')}
                             autoPlay
                             loop={false}
-                            style={{width: 400, height: 400}}   
+                            style={{width:300, height:300}}   
                         />
                     </View>
                     <Text style={styles.summaryTxt}>Your phone needed <Text style={styles.summaryTxthighlight} >{roundsNumber}</Text> rounds to guess the number <Text style={styles.summaryTxthighlight} >{userNumber}</Text></Text>  
