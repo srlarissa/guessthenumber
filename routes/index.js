@@ -13,7 +13,7 @@ export function AppRoutes(){
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 <Stack.Screen name="Splash" component={Splash} />
-                <Stack.Screen name="InsertNumber" component={StartGameScreen} />
+                <Stack.Screen name="InsertNumber" component={StartGameScreen} options={{ gestureEnabled: false}}/>
                 <Stack.Screen name="Game" component={GameScreen} />
                 <Stack.Screen name="GameOver" component={GameOverScreen} />
             </Stack.Navigator>
