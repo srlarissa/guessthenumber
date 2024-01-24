@@ -6,7 +6,7 @@ import {    View,
             ImageBackground, 
             StyleSheet, 
             Text,
-            Dimensions } from 'react-native';
+            Dimensions  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const deviceWidth = Dimensions.get('window').width;
