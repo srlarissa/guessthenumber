@@ -35,7 +35,7 @@ const GameOverScreen = ({ route }) => {
                             source={require('../assets/image/animation/victory.json')}
                             autoPlay
                             loop={false}
-                            style={{width:300, height:300}}   
+                            style={{width: deviceWidth < 380 ? 150 : 300, height: deviceWidth < 380 ? 150 : 300}}   
                         />
                     </View>
                     <Text style={styles.summaryTxt}>Your phone needed <Text style={styles.summaryTxthighlight} >{roundsNumber}</Text> rounds to guess the number <Text style={styles.summaryTxthighlight} >{userNumber}</Text></Text>  
