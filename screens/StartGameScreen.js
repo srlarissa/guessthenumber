@@ -13,7 +13,9 @@ import {    View,
             Alert, 
             ImageBackground,
             BackHandler,
-            Dimensions  } from 'react-native';
+            Dimensions,
+            KeyboardAvoidingView,
+            ScrollView  } from 'react-native';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -48,33 +50,37 @@ const StartGameScreen = () => {
 
     return (
         <LinearGradient colors={[Colors.blue800, Colors.blue500]} style={styles.rootContainer}>
-           <ImageBackground  source={require('../assets/image/background.png')} 
-                             resizeMode='cover' style={styles.rootContainer} 
-                             imageStyle={styles.backgroundImage}>
-                <View style={styles.screen}>
-                    <PrimaryTitle>Guess The Number</PrimaryTitle>
-                    <Card>
-                        <InstructionTxt />
-                        <TextInput  style={styles.numberInput} 
-                                    maxLength={2} 
-                                    keyboardType='number-pad'
-                                    autoCapitalize='none'
-                                    autoCorrect={false} 
-                                    onChangeText={enteredNumberHandler}
-                                    value={enteredNumber}
-                        />
-                        <View style={styles.buttonsContainer}>
-                            <View style={styles.buttonContainer}>
-                                <PrimaryButton btnHandler={resetInputHandler}>Reset</PrimaryButton>
-                            </View>
-                            <View style={styles.buttonContainer}>
-                                <PrimaryButton btnHandler={confirmInputHandler}>Confirm</PrimaryButton>
-                            </View>
+            <ScrollView style={styles.rootContainer}>
+                <ImageBackground  source={require('../assets/image/background.png')} 
+                                resizeMode='cover' style={styles.rootContainer} 
+                                imageStyle={styles.backgroundImage}>
+                    <KeyboardAvoidingView behavior="position" style={styles.rootContainer}>
+                        <View style={styles.screen}>
+                            <PrimaryTitle>Guess The Number</PrimaryTitle>
+                            <Card>
+                                <InstructionTxt />
+                                <TextInput  style={styles.numberInput} 
+                                            maxLength={2} 
+                                            keyboardType='number-pad'
+                                            autoCapitalize='none'
+                                            autoCorrect={false} 
+                                            onChangeText={enteredNumberHandler}
+                                            value={enteredNumber}
+                                />
+                                <View style={styles.buttonsContainer}>
+                                    <View style={styles.buttonContainer}>
+                                        <PrimaryButton btnHandler={resetInputHandler}>Reset</PrimaryButton>
+                                    </View>
+                                    <View style={styles.buttonContainer}>
+                                        <PrimaryButton btnHandler={confirmInputHandler}>Confirm</PrimaryButton>
+                                    </View>
+                                </View>
+                            </Card>
+                            <InstructionBox title={<PrimaryTitle>Instructions</PrimaryTitle>} />
                         </View>
-                    </Card>
-                    <InstructionBox title={<PrimaryTitle>Instructions</PrimaryTitle>} />
-                </View>
-            </ImageBackground>
+                    </KeyboardAvoidingView>
+                </ImageBackground>
+            </ScrollView>
         </LinearGradient>
     );
 };
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     screen:{
         flex:1,
         padding:24,
-        marginTop: deviceHeight < 600 ? 0 : 24,
+        marginTop: deviceHeight < 400 ? 0 : 24,
     },
     numberInput: {
         height: 50,
