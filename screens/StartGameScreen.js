@@ -12,7 +12,10 @@ import {    View,
             StyleSheet, 
             Alert, 
             ImageBackground,
-            BackHandler } from 'react-native';
+            BackHandler,
+            Dimensions  } from 'react-native';
+
+const deviceHeight = Dimensions.get('window').height;
 
 const StartGameScreen = () => {
 
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     screen:{
         flex:1,
         padding:24,
+        marginTop: deviceHeight < 600 ? 0 : 24,
     },
     numberInput: {
         height: 50,

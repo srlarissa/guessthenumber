@@ -13,10 +13,13 @@ import {    View,
             StyleSheet, 
             Alert,
             FlatList,
-            ImageBackground} from 'react-native';
+            ImageBackground,
+            Dimensions  } from 'react-native';
 
 let minRef = 1;
 let maxRef = 100;
+
+const deviceHeight = Dimensions.get('window').height;
 
 const GameScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -111,6 +114,7 @@ const styles = StyleSheet.create({
     screen:{
         flex:1,
         padding:24,
+        marginTop: deviceHeight < 600 ? 0 : 24,
     },
     cardContainer:{
        flexDirection: 'row', 

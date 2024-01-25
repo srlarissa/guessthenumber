@@ -1,5 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import {    View, 
+            Text, 
+            StyleSheet,
+            Dimensions  } from 'react-native';
 import Colors from '../../constants/Colors';
+
+const deviceHeight = Dimensions.get('window').height; 
 
 const InstructionBox = ({title}) => {
     return (
@@ -21,7 +26,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         marginHorizontal: 12,
-        marginTop: 52,
+        marginTop: deviceHeight < 600 ? 10 : 20,
         padding:18,
     },
     instructionText: {

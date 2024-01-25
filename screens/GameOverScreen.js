@@ -11,6 +11,7 @@ import {    View,
             Dimensions  } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 const GameOverScreen = ({ route }) => {
 
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
         flex:1,
         padding:24,
         alignItems:'center',
+        marginTop: deviceHeight < 600 ? 0 : 24,
     },
     titleContainer:{
         width:'100%',

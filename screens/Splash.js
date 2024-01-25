@@ -10,6 +10,7 @@ import {    View,
 import { useNavigation } from '@react-navigation/native';
 
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 export function Splash(){
     const navigation = useNavigation();
@@ -18,7 +19,7 @@ export function Splash(){
            <ImageBackground  source={require('../assets/image/background.png')} 
                              resizeMode='cover' style={styles.rootContainer} 
                              imageStyle={styles.backgroundImage}>
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, marginTop: deviceHeight < 600 ? 0 : 24}}>
                     <View style={styles.animationContainer}>
                         <LottieView
                             source={require('../assets/image/animation/dicesplash.json')}
