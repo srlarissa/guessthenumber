@@ -1,4 +1,4 @@
-#Guess the Number
+# Guess the Number
 
 ##Sumary
 A mobile game where the player selects a number between 1 and 99, and the phone (opponent) attempts to guess it.
