@@ -28,22 +28,39 @@ const GameScreen = ({ route }) => {
     let initialGuess = generateRandomNumber(100, 1, userNumber);
     const [guessedNumber, setGuessedNumber] = useState(initialGuess);
     const [roundLogs, setRoundLogs] = useState([initialGuess]);
-
+    
+    /** 
+    * This useEffect analizes if the game is over calling the onGameOver function.
+    */
     useEffect(() => {
         if(guessedNumber === userNumber){
             onGameOver();
         }
     }, [guessedNumber, userNumber, onGameOver]);
-
+    
+    /** 
+    * This useEffect sets the min and max values to the initial values everytime the screen is rendered.
+    */
     useEffect(() => {
         minRef = 1;
         maxRef = 100;
     },[]);
-
+    
+    /** 
+    * This function navigates to the GameOver screen.
+    */
     function onGameOver(){
         navigation.navigate('GameOver', {roundsNumber: roundLogs.length, userNumber: userNumber});
     }
-
+    
+    /** 
+    * This function generates the first random number the opponent will guess.
+    * @summary - This function generates a number between the min and the max values, and if the number is the same as the userNumber, it generates another number.
+    * @param {number} max - The max value the random number can be.
+    * @param {number} min - The min value the random number can be.
+    * @param {number} exclude - The number choosed by the user, so the random number can't be the same on the first round.
+    * @return {number} - The first guess of the opponent.
+    */
     function generateRandomNumber(max, min, exclude){
         const rndNumber = Math.floor(Math.random() * (max - min)) + min;
         if(rndNumber === exclude){
@@ -53,6 +70,13 @@ const GameScreen = ({ route }) => {
         }
     }
     
+    /** 
+    * Next guess generator function that updates the min and max value, generates a new random number and keeps a log of the guesses.
+    * @summary Depending on the direction, this function updates the min or max value and generates a new random number between them.
+    * Then, the new generated number is set as the new guessedNumber and added to the roundLogs array. 
+    * @param {string} direction - The direction the user chose between higher or lower. This way is possible to adapt the min and max values 
+    * and generate a new random number.
+    */
     function nextGuessGenerator(direction){
         if(direction == 'lower' && guessedNumber > userNumber){
             maxRef = guessedNumber;

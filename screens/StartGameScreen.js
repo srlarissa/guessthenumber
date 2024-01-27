@@ -19,8 +19,10 @@ import {    View,
 
 const deviceHeight = Dimensions.get('window').height;
 
-const StartGameScreen = () => {
-
+const StartGameScreen = () => {    
+    /** 
+    * This useEffect prevents the user from going back to the splash screen.
+    */
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', () => true);
     }, []);
@@ -33,6 +35,9 @@ const StartGameScreen = () => {
         setEnteredNumber(playerNumber);
     }
 
+    /** 
+    * Function that validates if the input is between 1 and 99 and navigates to the Game screen.
+    */
     function confirmInputHandler(){
         const chosenNumber = parseInt(enteredNumber);
 

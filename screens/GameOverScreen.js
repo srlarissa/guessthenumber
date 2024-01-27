@@ -14,10 +14,13 @@ const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 const GameOverScreen = ({ route }) => {
-
+    
     const { roundsNumber, userNumber } = route.params;
     const navigation = useNavigation();
-
+    
+    /** 
+    * This function makes the game go back to the first screen.
+    */
     function newGameHandler(){
         navigation.navigate('InsertNumber');
     }

@@ -21,6 +21,12 @@ export function Splash(){
                              imageStyle={styles.backgroundImage}>
                 <View style={{flex: 1, marginTop: deviceHeight < 600 ? 0 : 24}}>
                     <View style={styles.animationContainer}>
+
+                        {                       
+                            /** 
+                            * This function ends the splash screen and navigates to the InsertNumber screen.
+                            */
+                        }
                         <LottieView
                             source={require('../assets/image/animation/dicesplash.json')}
                             autoPlay={true}
